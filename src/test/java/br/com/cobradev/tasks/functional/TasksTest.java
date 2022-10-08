@@ -1,9 +1,7 @@
 package br.com.cobradev.tasks.functional;
 
-import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -15,18 +13,17 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class TasksTest {
 
-	public WebDriver acessarAplicacao() throws MalformedURLException, UnknownHostException {
+	public WebDriver acessarAplicacao() throws MalformedURLException {
 		//WebDriver driver = new ChromeDriver();
 		DesiredCapabilities cap = DesiredCapabilities.chrome();
-		String ipMachineLocal = InetAddress.getLocalHost().getHostAddress();
-		WebDriver driver = new RemoteWebDriver(new URL("http://" + ipMachineLocal + ":4444/wd/hub"), cap);
+		WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.17:4444/wd/hub"), cap);
 		driver.navigate().to("http://192.168.0.11:8001/tasks");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
 	}
 
 	@Test
-	public void deveSalvarTarefaComSucesso() throws MalformedURLException, UnknownHostException {
+	public void deveSalvarTarefaComSucesso() throws MalformedURLException {
 		WebDriver driver = acessarAplicacao();
 		try {
 			// clicar em Add Todo
@@ -51,7 +48,7 @@ public class TasksTest {
 	}
 	
 	@Test
-	public void naoDeveSalvarTarefaSemDescricao() throws MalformedURLException, UnknownHostException {
+	public void naoDeveSalvarTarefaSemDescricao() throws MalformedURLException {
 		WebDriver driver = acessarAplicacao();
 		try {
 			// clicar em Add Todo
@@ -73,7 +70,7 @@ public class TasksTest {
 	}
 	
 	@Test
-	public void naoDeveSalvarTarefaSemData() throws MalformedURLException, UnknownHostException {
+	public void naoDeveSalvarTarefaSemData() throws MalformedURLException {
 		WebDriver driver = acessarAplicacao();
 		try {
 			// clicar em Add Todo
@@ -95,7 +92,7 @@ public class TasksTest {
 	}
 	
 	@Test
-	public void naoDeveSalvarTarefaComDataPassada() throws MalformedURLException, UnknownHostException {
+	public void naoDeveSalvarTarefaComDataPassada() throws MalformedURLException {
 		WebDriver driver = acessarAplicacao();
 		try {
 			// clicar em Add Todo

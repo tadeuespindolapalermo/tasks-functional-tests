@@ -1,9 +1,7 @@
 package br.com.cobradev.tasks.prod;
 
-import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -17,10 +15,9 @@ import org.junit.Assert;
 public class HealthCheckIT {
     
     @Test
-    public void healthCheck() throws MalformedURLException, UnknownHostException {
-        DesiredCapabilities cap = DesiredCapabilities.chrome();       
-        String ipMachineLocal = InetAddress.getLocalHost().getHostAddress();
-        WebDriver driver = new RemoteWebDriver(new URL("http://" + ipMachineLocal + ":4444/wd/hub"), cap);
+    public void healthCheck() throws MalformedURLException {
+        DesiredCapabilities cap = DesiredCapabilities.chrome();        
+        WebDriver driver = new RemoteWebDriver(new URL("http://192.168.0.17:4444/wd/hub"), cap);
         try {
             driver.navigate().to("http://192.168.0.11:9999/tasks");
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
