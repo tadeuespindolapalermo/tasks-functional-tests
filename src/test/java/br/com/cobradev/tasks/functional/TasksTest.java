@@ -131,7 +131,7 @@ public class TasksTest {
             // remover tarefa
             driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
             message = driver.findElement(By.id("message")).getText();
-            Assert.assertEquals("Success!!!", message);
+            Assert.assertEquals("Success!", message);
         } finally {
             // fechar browser
             driver.quit();
